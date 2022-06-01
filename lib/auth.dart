@@ -14,7 +14,7 @@ class _AuthState extends State<Auth> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar:
-          AppBar(title: Center(child: Text('Вход в аккаунт: ${widget.title}'))),
+          AppBar(title: Center(child: Text('Вход в аккаунт ${widget.title}'))),
       body: ListView(
         children: [
           SizedBox(height: 10),
