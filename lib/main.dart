@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:opipo_app/auth.dart';
+import 'package:opipo_app/main_screens/main_screen.dart';
 import 'package:opipo_app/splash.dart';
 
 void main() {
@@ -14,7 +16,13 @@ class OpipoApp extends StatelessWidget {
     return MaterialApp(
       title: 'Opipo',
       theme: ThemeData(appBarTheme: AppBarTheme(backgroundColor: Colors.black)),
-      home: Splash(),
+      // home: Splash(),
+      initialRoute: '/splash_screen',
+      routes: {
+        '/splash_screen': (context) => Splash(),
+        '/auth_screen': (context) => Auth(),
+        '/main_screen': (context) => const MainScreen(),
+      },
     );
   }
 }

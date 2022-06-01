@@ -38,12 +38,9 @@ class _SplashState extends State<Splash> with TickerProviderStateMixin {
       // обробатываем при запуске
       for (i = 0; i < 100; i++) print(i);
     });
-    Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-            builder: (context) => Auth(
-                  title: i,
-                )));
+    Navigator.pushReplacementNamed(context, '/auth_screen');
+    // Navigator.pushReplacement(
+    //     context, MaterialPageRoute(builder: (context) => Auth()));
   }
 
   // @override

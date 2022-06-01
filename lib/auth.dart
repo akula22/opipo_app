@@ -1,9 +1,9 @@
 // ignore_for_file: prefer_typing_uninitialized_variables
 import 'package:flutter/material.dart';
+import 'package:opipo_app/main_screens/main_screen.dart';
 
 class Auth extends StatefulWidget {
-  var title;
-  Auth({Key? key, required this.title}) : super(key: key);
+  Auth({Key? key}) : super(key: key);
 
   @override
   State<Auth> createState() => _AuthState();
@@ -13,8 +13,7 @@ class _AuthState extends State<Auth> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:
-          AppBar(title: Center(child: Text('Вход в аккаунт ${widget.title}'))),
+      appBar: AppBar(title: Center(child: Text('Вход в аккаунт'))),
       body: ListView(
         children: [
           SizedBox(height: 10),
@@ -54,16 +53,17 @@ class _formWidget extends StatefulWidget {
 }
 
 class __formWidgetState extends State<_formWidget> {
-  final _username = TextEditingController();
-  final _password = TextEditingController();
+  final _username = TextEditingController(text: 'akula22');
+  final _password = TextEditingController(text: '88');
+
   String? errorText = null;
   void _auth() {
     final username = _username.text;
     final password = _password.text;
 
     if (username == 'akula22' && password == '88') {
-      print('login ok');
       errorText = null;
+      Navigator.of(context).pushReplacementNamed('/main_screen');
     } else {
       errorText = 'Данные для входа не верны';
     }
