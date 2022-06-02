@@ -15,7 +15,14 @@ class OpipoApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Opipo',
-      theme: ThemeData(appBarTheme: AppBarTheme(backgroundColor: Colors.black)),
+      theme: ThemeData(
+        appBarTheme: AppBarTheme(backgroundColor: Colors.black),
+        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          backgroundColor: Colors.black,
+          selectedItemColor: Colors.white,
+          unselectedItemColor: Colors.white70,
+        ),
+      ),
       // home: Splash(),
       initialRoute: '/splash_screen',
       routes: {
