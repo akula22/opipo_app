@@ -36,7 +36,7 @@ class _headerWidget extends StatelessWidget {
       padding: const EdgeInsets.all(16.0),
       child: Column(
         children: [
-          Text('Добро пожаловать в PRINTING HOUSE!',
+          Text('Добро пожаловать!',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
           // Text(data),
         ],
@@ -55,11 +55,13 @@ class _formWidget extends StatefulWidget {
 class __formWidgetState extends State<_formWidget> {
   final _username = TextEditingController(text: 'akula22');
   final _password = TextEditingController(text: '88');
+  final _phone = TextEditingController();
 
   String? errorText = null;
   void _auth() {
     final username = _username.text;
     final password = _password.text;
+    final phone = _phone.text;
 
     if (username == 'akula22' && password == '88') {
       errorText = null;
@@ -80,23 +82,40 @@ class __formWidgetState extends State<_formWidget> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Username'),
+          // Text('Username'),
           SizedBox(height: 5),
           TextField(
             controller: _username,
             decoration: InputDecoration(
+                icon: Icon(Icons.people),
+                labelText: 'Username',
                 isCollapsed: true,
                 border: OutlineInputBorder(),
                 contentPadding:
                     EdgeInsets.symmetric(horizontal: 10, vertical: 12)),
           ),
           SizedBox(height: 20),
-          Text('Password'),
+          TextField(
+            keyboardType: TextInputType.number,
+            controller: _phone,
+            decoration: InputDecoration(
+                icon: Icon(Icons.phone),
+                labelText: 'Phone',
+                prefixText: '+7',
+                isCollapsed: true,
+                border: OutlineInputBorder(),
+                contentPadding:
+                    EdgeInsets.symmetric(horizontal: 10, vertical: 12)),
+          ),
+          SizedBox(height: 20),
+          // Text('Password'),
           SizedBox(height: 5),
           TextField(
             controller: _password,
             obscureText: true,
             decoration: InputDecoration(
+                icon: Icon(Icons.password),
+                labelText: 'Password',
                 isCollapsed: true,
                 border: OutlineInputBorder(),
                 contentPadding:
@@ -117,8 +136,10 @@ class __formWidgetState extends State<_formWidget> {
               ),
             ),
           ),
+
           Row(
             children: [
+              SizedBox(width: 42),
               ElevatedButton(
                 onPressed: _auth,
                 child: Text('Вход'),
@@ -139,18 +160,6 @@ class __formWidgetState extends State<_formWidget> {
                   textStyle: MaterialStateProperty.all(
                     TextStyle(fontWeight: FontWeight.w600),
                   ),
-                  padding: MaterialStateProperty.all(
-                    EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-                  ),
-                ),
-              ),
-              SizedBox(width: 20),
-              TextButton(
-                onPressed: () {},
-                child: Text('Регистрация'),
-                style: ButtonStyle(
-                  textStyle: MaterialStateProperty.all(
-                      TextStyle(fontWeight: FontWeight.w600)),
                   padding: MaterialStateProperty.all(
                     EdgeInsets.symmetric(horizontal: 10, vertical: 8),
                   ),
