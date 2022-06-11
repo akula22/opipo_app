@@ -1,6 +1,9 @@
 // ignore_for_file: prefer_typing_uninitialized_variables
+import 'dart:async';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:opipo_app/main_screens/main_screen.dart';
+import '../domain/api_client.dart';
 
 class Auth extends StatefulWidget {
   Auth({Key? key}) : super(key: key);
@@ -53,22 +56,48 @@ class _formWidget extends StatefulWidget {
 }
 
 class __formWidgetState extends State<_formWidget> {
-  final _username = TextEditingController(text: 'akula22');
+  final _username = TextEditingController(text: 'psych88');
   final _password = TextEditingController(text: '88');
   final _phone = TextEditingController();
 
+  Widget loginBtn = Text('Войти');
+
   String? errorText = null;
-  void _auth() {
+  void _auth() async {
+    errorText = null;
+    loginBtn = SizedBox(
+        width: 20,
+        height: 15,
+        child: CircularProgressIndicator(strokeWidth: 2));
+    final _apiClient = ApiClient();
+
     final username = _username.text;
     final password = _password.text;
     final phone = _phone.text;
 
-    if (username == 'akula22' && password == '88') {
-      errorText = null;
-      Navigator.of(context).pushReplacementNamed('/main_screen');
+    if (username.isEmpty || password.isEmpty) {
+      errorText = 'Заполните поля логин и пароль';
+      loginBtn = Text('Войти');
     } else {
-      errorText = 'Данные для входа не верны';
+      final result =
+          await _apiClient.Auth(username: username, password: password);
+      if (result.isEmpty || result.length > 1000) {
+        errorText = 'Логин или пароль не верен';
+        loginBtn = Text('Войти');
+      } else {
+        Widget loginBtn = Text('Войти');
+
+        unawaited(Navigator.of(context).pushNamed('/main_screen'));
+        // print(result);
+      }
     }
+
+    // if (username == 'akula22' && password == '88') {
+    //   errorText = null;
+    //   Navigator.of(context).pushReplacementNamed('/main_screen');
+    // } else {
+    //   errorText = 'Данные для входа не верны';
+    // }
     setState(() {});
   }
 
@@ -142,7 +171,7 @@ class __formWidgetState extends State<_formWidget> {
               SizedBox(width: 42),
               ElevatedButton(
                 onPressed: _auth,
-                child: Text('Вход'),
+                child: loginBtn,
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(Colors.black54),
                   textStyle: MaterialStateProperty.all(

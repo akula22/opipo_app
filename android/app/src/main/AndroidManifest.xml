@@ -1,7 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.opipo_app">
+    <uses-permission android:name="android.permission.INTERNET" />
    <application
-        android:label="opipo_app"
+        android:label="Opipo"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:opipo_app/main.dart';
 // ignore_for_file: prefer_typing_uninitialized_variables
-import 'auth.dart';
+import 'user/auth.dart';
 
 class Splash extends StatefulWidget {
   const Splash({Key? key}) : super(key: key);
@@ -36,7 +36,9 @@ class _SplashState extends State<Splash> with TickerProviderStateMixin {
     var i = 1;
     await Future.delayed(Duration(milliseconds: 2000), () {
       // обробатываем при запуске
-      for (i = 0; i < 100; i++) print(i);
+      for (i = 0; i < 10; i++) {
+        // print(i);
+      }
     });
     Navigator.pushReplacementNamed(context, '/auth_screen');
     // Navigator.pushReplacement(
@@ -53,7 +55,7 @@ class _SplashState extends State<Splash> with TickerProviderStateMixin {
         color: Colors.black,
         child: FadeTransition(
           opacity: _animation,
-          child: Image.asset("images/logo.jpg", width: 400, height: 400),
+          child: Image.asset("images/logo.jpg", width: 250, height: 250),
         ),
       ),
     );
