@@ -28,8 +28,8 @@ class ApiClient {
     return response.body;
   }
 
-  Future<List<UserModel>> getUsers({required int limit}) async {
-    final url = Uri.parse('$_host/api/get-last-users?limit=$limit');
+  Future<List<UserModel>> getUsers({required int page}) async {
+    final url = Uri.parse('$_host/api/get-last-users?limit=$page');
     var response = await http.get(url);
     final List<UserModel> users = (json.decode(response.body) as List)
         .map((data) => UserModel.fromJson(data))

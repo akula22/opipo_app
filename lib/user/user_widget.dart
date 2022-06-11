@@ -18,11 +18,17 @@ class UserListWidget extends StatefulWidget {
 class _UserListWidgetState extends State<UserListWidget> {
   final _search = TextEditingController();
   var _filteredUsers = <UserModel>[];
-  // List<UserModel> _filteredUsers = [];
+  int _page = 0;
+
+  //Есть следующая страница или нет
+  bool _nextPage = true;
+
+  //Используется для отображения индикаторов загрузки, когда работает функция _firstLoad
+  bool _firstLoadRun = false;
 
   init() async {
     final _apiClient = ApiClient();
-    final result = await _apiClient.getUsers(limit: 10);
+    final result = await _apiClient.getUsers(page: _page);
     _filteredUsers = result;
     setState(() {});
   }
